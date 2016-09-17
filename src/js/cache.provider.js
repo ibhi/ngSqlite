@@ -263,7 +263,7 @@ function cacheProvider($qProvider) {
       */
       Cache.prototype.query = function(query, fieldValues) {
           var self = this;
-          self.exec(query, fieldValues);
+          return self.exec(query, fieldValues);
       };
 
       Cache.prototype.bulkUpsert = function(tableName, dataList, keyFields) {
@@ -274,6 +274,12 @@ function cacheProvider($qProvider) {
         }));
         
       };
+
+      Cache.prototype.drop = function(tableName) {
+        var self = this;
+        var query = 'DROP TABLE IF EXISTS ' + tableName;
+        return self.exec(query, []);
+      }
 
       return new Cache();
   }

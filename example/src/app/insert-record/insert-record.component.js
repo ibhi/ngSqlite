@@ -18,7 +18,7 @@
     /* @ngInject */
     function InsertRecordController(cache) {
         var vm = this;
-   
+        
         activate();
 
         ////////////////
@@ -27,9 +27,12 @@
             vm.tableData[column.name] = '';
         });
 
+        vm.errorMessage = null;
+
         vm.insertRecord = function() {
             console.log(vm.tableData);
             cache.upsert(vm.table.name, vm.tableData).then(function(result) {
+                vm.errorMessage = null;
                 vm.table.columns.forEach(function(column) {
                     vm.tableData[column.name] = '';
                 });
@@ -38,7 +41,10 @@
                     vm.table.data = result;
                 }, function(error) {
                     console.log(error);
+
                 });
+            }, function(error) {
+                vm.errorMessage = error.message;
             })
         }
         

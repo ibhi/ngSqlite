@@ -24,6 +24,14 @@
 			url: '/update',
 			template: '<update-record table="vm.table"></update-record>'
 		})
+		.state('retrieve', {
+			url: '/retrieve',
+			template: '<retrieve-record table="vm.table"></retrieve-record>'
+		})
+		.state('drop', {
+			url: '/drop',
+			template: '<drop-table table="vm.table"></drop-table>'
+		});
 
 
 	}

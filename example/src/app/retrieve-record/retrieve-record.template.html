@@ -19,7 +19,8 @@
         </tr>
       </tbody>
     </table>
-    <button type="submit" class="btn btn-default" ng-disabled="tableForm.$invalid" ng-click="vm.insertRecord()">Insert Record</button>
+    <button type="submit" class="btn btn-default"  ng-click="vm.retrieveRecord()">Retrieve Record</button>
+    <button type="submit" class="btn btn-default"  ng-click="vm.clear()">Clear</button>
     <p class="text-danger">{{vm.errorMessage}}</p>
   </div>
 </div>

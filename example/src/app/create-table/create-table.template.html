@@ -1,25 +1,22 @@
 <div class="panel panel-default">
   <div class="panel-heading" role="tab" id="createTableHeading">
     <h4 class="panel-title">
-      <a role="button" data-toggle="collapse" data-parent="#accordion" href="#createTable" aria-expanded="true" aria-controls="createTable">
         Create Table
-      </a>
     </h4>
-  </div>
-  <div id="createTable" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="createTable">
+  </div>  
   <div class="panel-body">
-    <form class="form-inline" name="tableForm"  novalidate>
+    <form class="form" name="tableForm"  novalidate>
       <div class="form-group" >
         <label for="name">Table Name</label>
         <input type="text" ng-model="vm.table.name" class="form-control" name="tableName" required>
       </div>
       <div class="box"ng-repeat="column in vm.table.columns track by $index">
         <div class="form-group" >
-          <label for="name">Name</label>
+          <label for="name">Field Name</label>
           <input type="text" ng-model="column.name" class="form-control" id="name" name="name" placeholder="Jane Doe" required>
         </div>
         <div class="form-group" >
-          <label>Type</label>
+          <label>Field Type</label>
           <label class="checkbox-inline">
             <input type="radio" ng-model="column.type" id="inlineCheckbox1" value="NULL"> NULL
           </label>
