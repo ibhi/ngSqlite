@@ -66,7 +66,11 @@ function cacheProvider($qProvider) {
 
       Cache.prototype.init = function() {
         if(!window.cordova) {
-          this.db = window.openDatabase(config.dbName + '.db', '1.0', config.dbName + ' DB', 2*1024*1024);
+          if(window.openDatabase) {
+            this.db = window.openDatabase(config.dbName + '.db', '1.0', config.dbName + ' DB', 2*1024*1024);
+          } else {
+            alert('Your browser doesnt support WebSQL. Either use chrome or use this wrapper with cordova sqlite plugin');
+          }
         } else {
           this.db = window.sqlitePlugin.openDatabase({name: config.dbName + '.db' , location: config.dbLocation});
           if(!this.db) return new Error('Error creating database');
