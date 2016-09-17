@@ -10,6 +10,7 @@
 
 		vm.table = {};
 		vm.table.name = 'demo'; 
+		vm.table.data = [];
 
 		vm.table.columns = [{
         	name: 'Id',
@@ -23,6 +24,13 @@
         if(window.localStorage.getItem('table')) {
         	vm.table = JSON.parse(window.localStorage.getItem('table'));
         }
+
+        cache.selectAll(vm.table.name).then(function(result) {
+            console.log(result);
+            vm.table.data = result;
+        }, function(error) {
+            console.log(error);
+        });
 
 		vm.data = [{
     		Id: '123',

@@ -29,13 +29,19 @@
 
         vm.insertRecord = function() {
             console.log(vm.tableData);
-            cache.upsert(vm.table.name, vm.tableData);
+            cache.upsert(vm.table.name, vm.tableData).then(function(result) {
+                vm.table.columns.forEach(function(column) {
+                    vm.tableData[column.name] = '';
+                });
+                cache.selectAll(vm.table.name).then(function(result) {
+                    console.log(result);
+                    vm.table.data = result;
+                }, function(error) {
+                    console.log(error);
+                });
+            })
         }
-        cache.selectAll(vm.table.name).then(function(result) {
-            console.log(result);
-        }, function(error) {
-            console.log(error);
-        });
+        
 
         function activate() {
         }

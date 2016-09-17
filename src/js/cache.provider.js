@@ -43,7 +43,7 @@ function cacheProvider($qProvider) {
 
       function prepareResult(response) {
         var result = [];
-        if(response.hasOwnProperty('rows')) {
+        if(response.rows) {
           var len = response.rows.length;
           var i;
 
@@ -87,7 +87,7 @@ function cacheProvider($qProvider) {
           self.db.transaction(function(tx) {
             tx.executeSql(query, params, function(tx, result) {
               console.log('Transaction completed ', tx, result, prepareResult(result));
-              console.log(resolve);
+              // console.log(resolve);
               resolve(prepareResult(result));
             }, function(tx, error) {
               console.log('Transaction Error: ' + error.message);
