@@ -1,11 +1,18 @@
 <div class="panel panel-default">
-  <div class="panel-heading">Create Table</div>
+  <div class="panel-heading" role="tab" id="createTableHeading">
+    <h4 class="panel-title">
+      <a role="button" data-toggle="collapse" data-parent="#accordion" href="#createTable" aria-expanded="true" aria-controls="createTable">
+        Create Table
+      </a>
+    </h4>
+  </div>
+  <div id="createTable" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="createTable">
   <div class="panel-body">
-    <form class="form" name="tableForm"  novalidate>
+    <form class="form-inline" name="tableForm"  novalidate>
       <div class="form-group" >
-          <label for="name">Table Name</label>
-          <input type="text" ng-model="vm.table.name" class="form-control" name="tableName" required>
-        </div>
+        <label for="name">Table Name</label>
+        <input type="text" ng-model="vm.table.name" class="form-control" name="tableName" required>
+      </div>
       <div class="box"ng-repeat="column in vm.table.columns track by $index">
         <div class="form-group" >
           <label for="name">Name</label>
@@ -30,16 +37,22 @@
           </label>
         </div>
         <div class="form-group">
-          <label>Primary</label>
-          <input type="checkbox" ng-model="column.primary">
+          <label>
+            <input type="checkbox" ng-model="column.primary">
+            Primary
+          </label>
         </div>
         <div class="form-group">
-          <label>Unique</label>
-          <input type="checkbox" ng-model="column.unique">
+          <label>
+            <input type="checkbox" ng-model="column.unique">
+            Unique
+          </label>
         </div>
         <div class="form-group">
-          <label>Not Null</label>
-          <input type="checkbox" ng-model="column.notnull">
+          <label>
+            <input type="checkbox" ng-model="column.notnull">
+            Not Null
+          </label>
         </div>
       </div>
     </form>

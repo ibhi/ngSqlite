@@ -7,28 +7,39 @@
 	<link rel="stylesheet" href="src/styles/style.css">
 </head>
 <body ng-app="app">
+	<nav class="navbar navbar-default navbar-fixed-top">
+	  <div class="container-fluid">
+	    <!-- Brand and toggle get grouped for better mobile display -->
+	    <div class="navbar-header">
+	      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+	        <span class="sr-only">Toggle navigation</span>
+	        <span class="icon-bar"></span>
+	        <span class="icon-bar"></span>
+	        <span class="icon-bar"></span>
+	      </button>
+	      <a class="navbar-brand" href="#">ngSqlite</a>
+	    </div>
+
+	    <!-- Collect the nav links, forms, and other content for toggling -->
+	    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+	      <ul class="nav navbar-nav">
+	        <li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li>
+	      </ul>
+	    </div><!-- /.navbar-collapse -->
+	  </div><!-- /.container-fluid -->
+	</nav>
 	<div ng-controller="AppController as vm">
-		<div class="container">
+		<div class="container-fluid">
 			<div class="row">
 				<div class="col-md-6">
-					<div class="panel panel-default">
-					  <div class="panel-heading">DB Operations</div>
-					  <div class="panel-body">
-					    <button class="btn btn-primary" ng-click="vm.createTable()">Create Table</button>
-					    <button class="btn btn-primary" ng-click="vm.createRecord()">Create Record</button>
-					    <button class="btn btn-primary" ng-click="vm.retrieveAll()">Retrieve All Records</button>
-					    <button class="btn btn-primary" ng-click="vm.retrieve()">Retrieve Record</button>
-					    <button class="btn btn-primary" ng-click="vm.update()">Update Record</button>
-					    <button class="btn btn-primary" ng-click="vm.delete()">Delete Record</button>
-					    <button class="btn btn-primary" ng-click="vm.bulkUpsert()">Bulk Upsert</button>
-
-					  </div>
+					<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="false">
+						<create-table table="vm.table"></create-table>
+						<insert-record table="vm.table"></insert-record>
+						<update-record table="vm.table"></update-record>
 					</div>
-					<create-table table="vm.table"></create-table>
-					<insert-record table="vm.table"></insert-record>
 				</div>
 				<div class="col-md-6">
-					<sql-table data="vm.table.data"></sql-table>
+					<sql-table table="vm.table"></sql-table>
 				</div>
 			</div>
 		</div>
@@ -44,9 +55,10 @@
 	<script src="src/app/app.config.js"></script>
 	<script src="src/app/app.run.js"></script>
 	<script src="src/app/app.controller.js"></script>
-	<script src="src/app/table.directive.js"></script>
-	<!-- <script src="src/app/create-table/create-table.controller.js"></script> -->
+	<script src="src/app/sql-table/sql-table.component.js"></script>
 	<script src="src/app/create-table/create-table.component.js"></script>
 	<script src="src/app/insert-record/insert-record.component.js"></script>
+	<script src="src/app/update-record/update-record.component.js"></script>
+
 </body>
 </html>

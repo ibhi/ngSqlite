@@ -18,21 +18,7 @@
     /* @ngInject */
     function CreateTableController(cache) {
         var vm = this;
-    //     {
-		  //   Id: {
-		  //     type: 'TEXT',
-		  //     primary: true
-		  //   },
-		  //   FirstName: {
-		  //     type: 'TEXT'
-		  //   },
-		  //   LastName: {
-		  //     type: 'TEXT'
-		  //   },
-		  //   Email: {
-		  //     type: 'TEXT'
-		  //   }
-		  // }
+    
                 
 		window.localStorage.setItem('table', JSON.stringify(vm.table));
         function prepare(columns) {
@@ -47,6 +33,13 @@
 
         vm.create = function() {
         	console.log(vm.table.columns);
+            vm.table.keyField = null;
+            vm.table.columns.forEach(function(column) {
+                
+                if(column.primary) {
+                    vm.table.keyField = column.name;
+                }
+            });
         	window.localStorage.setItem('table', JSON.stringify(vm.table));
         	var fieldSpec = prepare(vm.table.columns);
         	cache.createTable(vm.table.name, fieldSpec)

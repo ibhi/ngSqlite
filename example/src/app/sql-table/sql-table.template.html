@@ -1,0 +1,17 @@
+<div class="panel panel-default">
+  	<div class="panel-heading">SQL Table - {{vm.table.name}}</div>
+  	<div class="panel-body">
+    	<table class="table">
+    		<thead>
+    			<tr>
+    			    <th ng-repeat="column in vm.table.columns track by $index">{{column.name}}</th>
+    			 </tr>
+    		</thead>
+    		<tbody>
+    			<tr ng-repeat="row in vm.table.data track by $index">
+    				<td ng-repeat="(key, value) in row">{{value}}</td>
+    			</tr>
+    		</tbody>
+    	</table>
+  	</div>
+</div>

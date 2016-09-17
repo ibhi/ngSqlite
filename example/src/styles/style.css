@@ -1,7 +1,17 @@
+body { padding-top: 70px; }
+
 .box {
 	padding-left: 15px;
 	padding-right: 15px;
 	padding-top: 15px;
 	border: 1px solid #ddd;
 	margin-bottom: 15px;
+}
+
+div.box:first-child {
+	margin-top: 15px;
+}
+
+.form-group {
+	margin-bottom: 10px !important;
 }

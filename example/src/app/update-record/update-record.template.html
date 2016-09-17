@@ -1,0 +1,35 @@
+<div class="panel panel-default">
+  <div class="panel-heading" role="tab" id="updateRecordHeading">
+    <h4 class="panel-title">
+      <a role="button" data-toggle="collapse" data-parent="#accordion" href="#updateRecord" aria-expanded="true" aria-controls="updateRecord">
+        Update/Delete Record
+      </a>
+    </h4>
+  </div>
+  <div id="updateRecord" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="updateRecord">
+  <div class="panel-body">
+    <form name="updateTable" novalidate>
+      <input type="text" class="form-control" placeholder="Enter name of the key field for update (ex: id)" ng-if="!vm.table.keyField" ng-model="vm.table.keyField" required/>
+      <table class="table">
+        <thead>
+          <tr>
+              <th ng-repeat="column in vm.table.columns track by $index">{{column.name}}</th>
+           </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="row in vm.table.data track by $index">
+            <td ng-repeat="(key, value) in row">
+              <input type="text" class="form-control" ng-model="row[key]" ng-disabled="key === vm.table.keyField" />
+            </td>
+            <td>
+              <button class="btn btn-primary" ng-click="vm.upsertRecord(row)" ng-disabled="updateTable.$invalid">Update</button>
+            </td>
+            <td>
+              <button class="btn btn-primary" ng-click="vm.deleteRecord(row)" ng-disabled="updateTable.$invalid">Delete</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </form>
+  </div>
+</div>
