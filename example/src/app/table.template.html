@@ -1,0 +1,12 @@
+<table class="table">
+	<thead>
+		<tr>
+		    <th ng-repeat="column in vm.columns track by $index">{{column}}</th>
+		 </tr>
+	</thead>
+	<tbody>
+		<tr ng-repeat="row in vm.data track by $index">
+			<td ng-repeat="(key, value) in row">{{value}}</td>
+		</tr>
+	</tbody>
+</table>

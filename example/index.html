@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Sample App for ngSqlite</title>
+	<link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+	<link rel="stylesheet" href="src/styles/style.css">
+</head>
+<body ng-app="app">
+	<div ng-controller="AppController as vm">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-6">
+					<div class="panel panel-default">
+					  <div class="panel-heading">DB Operations</div>
+					  <div class="panel-body">
+					    <button class="btn btn-primary" ng-click="vm.createTable()">Create Table</button>
+					    <button class="btn btn-primary" ng-click="vm.createRecord()">Create Record</button>
+					    <button class="btn btn-primary" ng-click="vm.retrieveAll()">Retrieve All Records</button>
+					    <button class="btn btn-primary" ng-click="vm.retrieve()">Retrieve Record</button>
+					    <button class="btn btn-primary" ng-click="vm.update()">Update Record</button>
+					    <button class="btn btn-primary" ng-click="vm.delete()">Delete Record</button>
+					    <button class="btn btn-primary" ng-click="vm.bulkUpsert()">Bulk Upsert</button>
+
+					  </div>
+					</div>
+					<create-table table="vm.table"></create-table>
+					<insert-record table="vm.table"></insert-record>
+				</div>
+				<div class="col-md-6">
+					<sql-table data="vm.data"></sql-table>
+				</div>
+			</div>
+		</div>
+		
+	</div>
+	<script src="bower_components/jquery/dist/jquery.min.js"></script>
+	<script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+	<script src="bower_components/angular/angular.min.js"></script>
+	<script src="bower_components/lodash/dist/lodash.min.js"></script>
+
+	<script src="../dist/ngSqlite.js"></script>
+	<script src="src/app/app.module.js"></script>
+	<script src="src/app/app.config.js"></script>
+	<script src="src/app/app.run.js"></script>
+	<script src="src/app/app.controller.js"></script>
+	<script src="src/app/table.directive.js"></script>
+	<!-- <script src="src/app/create-table/create-table.controller.js"></script> -->
+	<script src="src/app/create-table/create-table.component.js"></script>
+	<script src="src/app/insert-record/insert-record.component.js"></script>
+</body>
+</html>

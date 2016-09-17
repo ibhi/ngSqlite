@@ -1,0 +1,49 @@
+<div class="panel panel-default">
+  <div class="panel-heading">Create Table</div>
+  <div class="panel-body">
+    <form class="form" name="tableForm"  novalidate>
+      <div class="form-group" >
+          <label for="name">Table Name</label>
+          <input type="text" ng-model="vm.table.name" class="form-control" name="tableName" required>
+        </div>
+      <div class="box"ng-repeat="column in vm.table.columns track by $index">
+        <div class="form-group" >
+          <label for="name">Name</label>
+          <input type="text" ng-model="column.name" class="form-control" id="name" name="name" placeholder="Jane Doe" required>
+        </div>
+        <div class="form-group" >
+          <label>Type</label>
+          <label class="checkbox-inline">
+            <input type="radio" ng-model="column.type" id="inlineCheckbox1" value="NULL"> NULL
+          </label>
+          <label class="checkbox-inline">
+            <input type="radio" ng-model="column.type" id="inlineCheckbox2" value="TEXT"> TEXT
+          </label>
+          <label class="checkbox-inline">
+            <input type="radio" ng-model="column.type" id="inlineCheckbox3" value="INTEGER"> INTEGER
+          </label>
+          <label class="checkbox-inline">
+            <input type="radio" ng-model="column.type" id="inlineCheckbox3" value="REAL"> REAL
+          </label>
+          <label class="checkbox-inline">
+            <input type="radio" ng-model="column.type" id="inlineCheckbox3" value="BLOB"> BLOB
+          </label>
+        </div>
+        <div class="form-group">
+          <label>Primary</label>
+          <input type="checkbox" ng-model="column.primary">
+        </div>
+        <div class="form-group">
+          <label>Unique</label>
+          <input type="checkbox" ng-model="column.unique">
+        </div>
+        <div class="form-group">
+          <label>Not Null</label>
+          <input type="checkbox" ng-model="column.notnull">
+        </div>
+      </div>
+    </form>
+    <button type="button" class="btn btn-default" ng-click="vm.addColumn()">Add Field</button>
+    <button type="submit" class="btn btn-default" ng-disabled="tableForm.$invalid" ng-click="vm.create()">Create Table</button>
+  </div>
+</div>
