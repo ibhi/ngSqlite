@@ -23,7 +23,9 @@
 	    <!-- Collect the nav links, forms, and other content for toggling -->
 	    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 	      <ul class="nav navbar-nav">
-	        <li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li>
+	        <li ui-sref-active="active"><a ui-sref="create">Create Table</a></li>
+	        <li ui-sref-active="active"><a ui-sref="insert">Insert Record</a></li>
+	        <li ui-sref-active="active"><a ui-sref="update">Update/Delete Record</a></li>
 	      </ul>
 	    </div><!-- /.navbar-collapse -->
 	  </div><!-- /.container-fluid -->
@@ -33,9 +35,10 @@
 			<div class="row">
 				<div class="col-md-6">
 					<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="false">
-						<create-table table="vm.table"></create-table>
+					<div ui-view></div>
+						<!-- <create-table table="vm.table"></create-table>
 						<insert-record table="vm.table"></insert-record>
-						<update-record table="vm.table"></update-record>
+						<update-record table="vm.table"></update-record> -->
 					</div>
 				</div>
 				<div class="col-md-6">
@@ -48,6 +51,7 @@
 	<script src="bower_components/jquery/dist/jquery.min.js"></script>
 	<script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 	<script src="bower_components/angular/angular.min.js"></script>
+	<script src="bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
 	<script src="bower_components/lodash/dist/lodash.min.js"></script>
 
 	<script src="../dist/ngSqlite.js"></script>

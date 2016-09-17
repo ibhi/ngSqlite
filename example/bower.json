@@ -17,6 +17,7 @@
   "dependencies": {
     "bootstrap": "^3.3.7",
     "angular": "angularjs#^1.5.8",
-    "lodash": "^4.15.0"
+    "lodash": "^4.15.0",
+    "angular-ui-router": "^0.3.1"
   }
 }
