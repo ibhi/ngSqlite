@@ -1,0 +1,32 @@
+{
+  "name": "ngSqlite",
+  "description": "Sqlite cordova wrapper for angularjs",
+  "main": "dist/ngSqlite.js",
+  "authors": [
+    "ibhi <ibrahimin2004@gmail.com>"
+  ],
+  "license": "MIT",
+  "keywords": [
+    "sqlite",
+    "sqlite-cordova",
+    "cordova-sqlite",
+    "angular",
+    "sqlite",
+    "ngsqlite",
+    "angular",
+    "wrapper",
+    "sqlite"
+  ],
+  "homepage": "https://github.com/ibhi/ngSqlite",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "angularjs#^1.5.8",
+    "lodash": "^4.15.0"
+  }
+}
