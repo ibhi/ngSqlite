@@ -174,7 +174,7 @@ angular
 ```
 
 ## Sample App
-Refer the [example](../blob/master/example) folder in this repo for a fully functioning browser app. The same code can be used in cordova app as well :)
+Refer the [example](../master/example) folder in this repo for a fully functioning browser app. The same code can be used in cordova app as well :)
 
 ## API Reference
 **TODO**
