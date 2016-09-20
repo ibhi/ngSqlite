@@ -25,7 +25,7 @@
         
         vm.upsertRecord = function(row) {
             console.log(row);
-            cache.upsert(vm.table.name, row, [vm.table.keyField]).then(function(result) {
+            cache.update(vm.table.name, row, [vm.table.keyField]).then(function(result) {
                 cache.selectAll(vm.table.name).then(function(result) {
                     console.log(result);
                     vm.table.data = result;
@@ -36,7 +36,7 @@
         };
 
         vm.deleteRecord = function(row) {
-            cache.delete(vm.table.name, row, [vm.keyField]).then(function(result) {
+            cache.delete(vm.table.name, row, [vm.table.keyField]).then(function(result) {
                 cache.selectAll(vm.table.name).then(function(result) {
                     console.log(result);
                     vm.table.data = result;

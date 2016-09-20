@@ -1,0 +1,25 @@
+<div class="panel panel-default">
+  <div class="panel-heading" role="tab" id="insertRecordHeading">
+    <h4 class="panel-title">
+        Upsert Record
+    </h4>
+  </div>
+  <div class="panel-body">
+    <table class="table">
+      <thead>
+        <tr>
+            <th ng-repeat="column in vm.table.columns track by $index">{{column.name}}</th>
+         </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td ng-repeat="(key, value) in vm.tableData">
+            <input type="text" class="form-control" ng-model="vm.tableData[key]" />
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <button type="submit" class="btn btn-default" ng-disabled="tableForm.$invalid" ng-click="vm.upsertRecord()">Upsert Record</button>
+    <p class="text-danger">{{vm.errorMessage}}</p>
+  </div>
+</div>

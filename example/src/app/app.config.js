@@ -24,6 +24,10 @@
 			url: '/update',
 			template: '<update-record table="vm.table"></update-record>'
 		})
+		.state('upsert', {
+			url: '/upsert',
+			template: '<upsert-record table="vm.table"></upsert-record>'
+		})
 		.state('retrieve', {
 			url: '/retrieve',
 			template: '<retrieve-record table="vm.table"></retrieve-record>'

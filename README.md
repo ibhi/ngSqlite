@@ -82,7 +82,7 @@ angular
 
         };
         
-        // Create record
+        // Create/Insert record
         vm.createRecord = function() {
             var testData = {
                 Id: 'ave',
@@ -90,7 +90,7 @@ angular
                 LastName: 'Stark',
                 Email: 'tonystark@test.com'
             };
-            cache.upsert(tableName, testData).then(function(result) {
+            cache.insert(tableName, testData).then(function(result) {
                 console.log(result);
             }, function(error) {
                 console.log(error);
@@ -123,7 +123,22 @@ angular
             });
         };
         
-        // Update or upsert record
+        // Update record - keyFields parameter is mandatory as it is used in where clause of the query for udpate
+        vm.update = function() {
+            var testData = {
+                Id: 'ave',
+                FirstName: 'Tony Iron Man',
+                LastName: 'Stark',
+                Email: 'tonystark@gmail.com'
+            };
+            cache.upsert(tableName, testData, ['Id']).then(function(result) {
+                console.log(result);
+            }, function(error) {
+                console.log(error);
+            });
+        };
+
+        // Upsert record - Inserts a new record or replaces existing record with the new values (Note: Upsert deletes the matching row and inserts a new row with the provided new values. Also upsert uses primary or unique fields for upsert transaction)
         vm.update = function() {
             var testData = {
                 Id: 'ave',
@@ -168,7 +183,34 @@ angular
             }, function(error) {
                 console.log(error);
             });
-        }
+        };
+
+        // Raw query - Exploit full power of raw queries
+        vm.query = function() {
+            var query = 'SELECT * FROM demo ORDER BY LastName';
+            
+            cache.query(query, []).then(function(result) {
+                    console.log(result);
+                }, function(error) {
+                    console.log(error);
+                });
+
+        };
+
+        // sql batch transactions - A wrapper around sqlBatch method
+        vm.sqlBatch = function() {
+            var queryList = [
+                'CREATE TABLE IF NOT EXISTS DemoTable (name, core), 
+                [ 'INSERT INTO DemoTable VALUES (?,?)', ['Alice', 101] ], 
+                [ 'INSERT INTO DemoTable VALUES (?,?)', ['Betty', 202] ]
+            ];
+
+            cache.sqlBatch(queryList).then(function(result) {
+                    console.log(result);
+                }, function(error) {
+                    console.log(error);
+                });
+        };
 
     }
 ```
