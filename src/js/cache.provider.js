@@ -153,15 +153,70 @@ function cacheProvider($qProvider) {
           });
       };
 
-      Cache.prototype.upsert = function(tableName, tableData, keyFields) {
+      // Cache.prototype.upsert = function(tableName, tableData, keyFields) {
+      //     var self = this;
+      //     keyFields = keyFields || [];
+      //     var query;
+      //     var fieldNames = Object.keys(tableData);
+      //     var where;
+      //     var valueFieldsValues;
+      //     var keyFieldsValues;
+      //     var fieldValues = [];
+
+      //     var valueFields = _.difference(fieldNames, keyFields);
+
+      //     valueFieldsValues = valueFields.map(function(valueField) {
+      //       return tableData[valueField];
+      //     });
+
+      //     keyFieldsValues = keyFields.map(function(keyField) {
+      //       return tableData[keyField];
+      //     });
+
+      //     fieldValues = _.concat(valueFieldsValues, keyFieldsValues);
+
+      //     if(keyFields.length > 0) { //update
+            
+      //       if (Array.isArray(keyFields)) {
+      //         where = whereQuery(keyFields);
+      //       }
+      //       query = 'UPDATE ' + tableName + ' SET ' +  createUpdateQuery(valueFields) + ' WHERE ' + where;
+
+            
+      //     } else { //insert
+
+      //       query = 'INSERT INTO ' + tableName + ' (' + fieldNames.join(',') + ') ' + 
+      //             ' VALUES (' + createPlaceholderQuestionmark(fieldNames) + ')';
+      //     }
+          
+
+      //     return self.exec(query, fieldValues);
+      // };
+
+      Cache.prototype.insert = function(tableName, tableData) {
+        var self = this;
+        var query;
+        var fieldNames = _.keys(tableData);
+        var fieldValues = _.values(tableData);
+
+        query = 'INSERT INTO ' + tableName + ' (' + fieldNames.join(',') + ') ' + ' VALUES (' + createPlaceholderQuestionmark(fieldNames) + ')';
+
+        return self.exec(query, fieldValues);
+      };
+
+      Cache.prototype.update = function(tableName, tableData, keyFields) {
           var self = this;
           keyFields = keyFields || [];
           var query;
-          var fieldNames = Object.keys(tableData);
+          var fieldNames = _.keys(tableData);
           var where;
           var valueFieldsValues;
           var keyFieldsValues;
           var fieldValues = [];
+
+          // if(keyFields.length === 0) {
+          //   return new Error('Key fields are mandatory for update query');
+          // }
 
           var valueFields = _.difference(fieldNames, keyFields);
 
@@ -175,22 +230,22 @@ function cacheProvider($qProvider) {
 
           fieldValues = _.concat(valueFieldsValues, keyFieldsValues);
 
-          if(keyFields.length > 0) { //update
-            
-            if (Array.isArray(keyFields)) {
-              where = whereQuery(keyFields);
-            }
-            query = 'UPDATE ' + tableName + ' SET ' +  createUpdateQuery(valueFields) + ' WHERE ' + where;
-
-            
-          } else { //insert
-
-            query = 'INSERT INTO ' + tableName + ' (' + fieldNames.join(',') + ') ' + 
-                  ' VALUES (' + createPlaceholderQuestionmark(fieldNames) + ')';
-          }
+          where = whereQuery(keyFields);
           
+          query = 'UPDATE ' + tableName + ' SET ' +  createUpdateQuery(valueFields) + ' WHERE ' + where;
 
           return self.exec(query, fieldValues);
+      };
+
+      Cache.prototype.upsert = function(tableName, tableData) {
+        var self = this;
+
+        var fieldNames = _.keys(tableData);
+        var fieldValues = _.values(tableData);
+
+        var query = 'INSERT OR REPLACE INTO ' + tableName + ' (' + fieldNames.join(',') + ') ' + ' VALUES (' + createPlaceholderQuestionmark(fieldNames) + ')';
+
+        return self.exec(query, fieldValues);
       };
 
       /**
