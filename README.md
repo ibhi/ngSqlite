@@ -200,7 +200,7 @@ angular
         // sql batch transactions - A wrapper around sqlBatch method
         vm.sqlBatch = function() {
             var queryList = [
-                'CREATE TABLE IF NOT EXISTS DemoTable (name, core), 
+                'CREATE TABLE IF NOT EXISTS DemoTable (name, core)', 
                 [ 'INSERT INTO DemoTable VALUES (?,?)', ['Alice', 101] ], 
                 [ 'INSERT INTO DemoTable VALUES (?,?)', ['Betty', 202] ]
             ];
