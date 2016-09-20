@@ -340,6 +340,19 @@ function cacheProvider($qProvider) {
         return self.exec(query, []);
       }
 
+      Cache.prototype.sqlBatch = function(queries) {
+        var self = this;
+
+        return $q(function(resolve, reject){
+          self.db.sqlBatch(queries, function() {
+            resolve('Batch transaction success');
+          }, function(error) {
+            reject(error.message);
+          });
+        });
+
+      }
+
       return new Cache();
   }
 
