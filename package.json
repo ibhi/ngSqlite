@@ -6,6 +6,7 @@
   "repository": {
     "url": "https://github.com/ibhi/ngSqlite"
   },
+  "main": "index.js",
   "dependencies": {
     "angular": "^1.5.8",
     "lodash": "^4.15.0"
