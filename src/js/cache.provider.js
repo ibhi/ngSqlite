@@ -342,15 +342,27 @@ function cacheProvider($qProvider) {
 
       Cache.prototype.sqlBatch = function(queries) {
         var self = this;
-
-        return $q(function(resolve, reject){
-          self.db.sqlBatch(queries, function() {
-            resolve('Batch transaction success');
-          }, function(error) {
-            reject(error.message);
+        if(typeof self.db.sqlBatch !== 'undefined') {
+          return $q(function(resolve, reject){
+            self.db.sqlBatch(queries, function() {
+              resolve('Batch transaction success');
+            }, function(error) {
+              reject(error.message);
+            });
           });
-        });
-
+        } else {
+          return $q.all(queries.map(function(query) {
+            if(_.isArray(query)) {
+              if(query.length >= 2) {
+                return self.exec(query[0], query[1]);
+              }
+              else{
+                return self.exec(query[0], []);
+              }
+            }
+            return self.exec(query, []);
+          }));
+        }
       }
 
       return new Cache();
