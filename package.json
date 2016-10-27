@@ -2,7 +2,7 @@
   "name": "ngSqlite",
   "description": "Sqlite cordova wrapper for angularjs",
   "private": false,
-  "version": "0.0.3",
+  "version": "0.0.4",
   "repository": {
     "url": "https://github.com/ibhi/ngSqlite"
   },
